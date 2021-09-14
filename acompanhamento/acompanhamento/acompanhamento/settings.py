@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
 from pathlib import Path
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -31,13 +32,15 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'investimentos.apps.InvestimentosConfig'
+    'investimentos.apps.InvestimentosConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'dal',
+    'dal_select2'
 ]
 
 MIDDLEWARE = [
@@ -67,6 +70,9 @@ TEMPLATES = [
         },
     },
 ]
+
+PROJECT_DIR = os.path.dirname(os.path.abspath(__file__))
+STATIC_ROOT = os.path.join(PROJECT_DIR, 'static')
 
 WSGI_APPLICATION = 'acompanhamento.wsgi.application'
 
