@@ -43,22 +43,34 @@
 </head>
 <body>
 
-    <div style="padding: 0; margin: 0;">
-        <header style="/* Stick to the top */ position: sticky; top: 0">
-            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
-            <div style=" background: white;">
-                <h1 style="margin-bottom: 20px; margin-left: 2%">
-                    <a href="{% url 'investimentos:importar'%}" style="margin-right: 20px">Importar</a>
-                    <a href="{% url 'investimentos:exportar'%}" style="margin-right: 20px">Exportar</a>
-                </h1>
-                <hr />
-            </div>
-        </header>
-        <main>
-            {% block branding %}
-            {% endblock %}
-        </main>
-    </div>
+    {% block content %}
+        <div style="padding: 0; margin: 0;">
+            <header style="/* Stick to the top */ position: sticky; top: 0">
+                <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+                <div style=" background: white;">
+                    <h1 style="margin-bottom: 20px; margin-left: 2%">
+                        <div>
+                            <a href="{% url 'investimentos:importar'%}" style="margin-right: 20px">Importar</a>
+                            <a href="{% url 'investimentos:exportar'%}" style="margin-right: 20px">Exportar</a>
+                            <div style="float: right; margin-right: 2%; font-size: 50%">
+                                {% if user.is_authenticated %}
+                                    Logado como: {{ user.username }}
+                                    <a href="{% url 'users:logout' %}">Logout</a>
+                                {% else %}
+                                    <a href="{% url 'users:login' %}">Login</a>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </h1>
+                    <hr />
+                </div>
+            </header>
+            <main>
+                {% block branding %}
+                {% endblock %}
+            </main>
+        </div>
+    {% endblock %}
     <script>
         var coll = document.getElementsByClassName("collapsible");
         var i;

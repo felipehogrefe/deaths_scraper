@@ -32,6 +32,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'users',
     'investimentos.apps.InvestimentosConfig',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -105,6 +106,9 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
+
+LOGIN_REDIRECT_URL = 'investimentos:index'
+LOGOUT_REDIRECT_URL = 'users:login'
 
 
 # Internationalization
